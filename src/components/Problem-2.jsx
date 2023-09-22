@@ -8,7 +8,7 @@ const Problem2 = () => {
     const [usContacts, setUsContacts] = useState([])
 
     const [evenStatus, setEvenStatus] = useState(false);
-    const [evenContacts, setEvenContacts] = useState([]);
+    //const [evenContacts, setEvenContacts] = useState([]);
 
 
     const fetchContacts = async () => {
@@ -31,13 +31,18 @@ const Problem2 = () => {
         fetchUSContacts();
     }, [])
 
-    const handleEven = (b) => {
-        if (b) {
-            
+    const [evenContacts, setEvenContacts] = useState(allContacts);
+
+    const handleEven = () => {
+        if (evenStatus == false) {
+            const newData = allContacts.filter(item => item.id % 2 == 0);
+            setEvenContacts(newData);
+            setEvenStatus(true);
         }
         else {
-            
+            setEvenContacts(allContacts);
         }
+       
     }
 
     console.log(allContacts);
@@ -138,7 +143,7 @@ const Problem2 = () => {
                                     </div>
                                     <div className="modal-footer justify-content-start">
                                         <span className=' '>
-                                            <input onChange={()=>handleEven(!evenContacts)} type='checkbox' /><label className='ps-2'>Even Only</label>
+                                            <input onChange={handleEven} type='checkbox' /><label className='ps-2'>Even Only</label>
                                         </span>
                                     </div>
                                 </div>
@@ -233,9 +238,10 @@ const Problem2 = () => {
                                             </table>
                                         </div>
                                     </div>
-                                    <div className="modal-footer">
-                                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" className="btn btn-primary">Understood</button>
+                                    <div className="modal-footer justify-content-start">
+                                        <span className=' '>
+                                            <input onChange={handleEven} type='checkbox' /><label className='ps-2'>Even Only</label>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
