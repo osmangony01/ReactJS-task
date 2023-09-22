@@ -49,8 +49,8 @@ const Problem2 = () => {
                                     </div>
                                     <div className="modal-body">
                                         <div className='pb-4'>
-                                            <button type="button" className="btn btn-outline-primary mx-2"  >All Contacts</button>
-                                            <button type="button" className="btn btn-outline-info mx-2">US Contacts</button>
+                                            <button type="button" className="btn btn-outline-primary mx-2" >All Contacts</button>
+                                            <button type="button" className="btn btn-outline-info mx-2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">US Contacts</button>
                                             <button type="button" className="btn btn-outline-secondary mx-2" data-bs-dismiss="modal">Close</button>
                                         </div>
                                         <div>
@@ -78,8 +78,7 @@ const Problem2 = () => {
                                         </div>
                                     </div>
                                     <div className="modal-footer">
-                                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" className="btn btn-primary">Understood</button>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +88,7 @@ const Problem2 = () => {
                     </span>
 
                     <span>
-                        <button className="btn btn-lg btn-outline-warning" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"  >US Contacts</button>
+                        <button className="btn btn-lg btn-outline-warning" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" >US Contacts</button>
                         <div className="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div className="modal-dialog modal-dialog-scrollable">
                                 <div className="modal-content">
@@ -99,7 +98,7 @@ const Problem2 = () => {
                                     </div>
                                     <div className="modal-body">
                                         <div className='pb-4'>
-                                            <button type="button" className="btn btn-outline-primary mx-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">All Contacts</button>
+                                            <button type="button" className="btn btn-outline-primary mx-2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop">All Contacts</button>
                                             <button type="button" className="btn btn-outline-info mx-2">US Contacts</button>
                                             <button type="button" className="btn btn-outline-secondary mx-2" data-bs-dismiss="modal">Close</button>
                                         </div>
