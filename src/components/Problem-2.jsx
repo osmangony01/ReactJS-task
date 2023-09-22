@@ -7,6 +7,10 @@ const Problem2 = () => {
     const [allContacts, setAllContacts] = useState([]);
     const [usContacts, setUsContacts] = useState([])
 
+    const [evenStatus, setEvenStatus] = useState(false);
+    const [evenContacts, setEvenContacts] = useState([]);
+
+
     const fetchContacts = async () => {
         const response = await fetch('https://contact.mediusware.com/api/contacts/')
         const data = await response.json();
@@ -26,6 +30,15 @@ const Problem2 = () => {
         fetchContacts();
         fetchUSContacts();
     }, [])
+
+    const handleEven = (b) => {
+        if (b) {
+            
+        }
+        else {
+            
+        }
+    }
 
     console.log(allContacts);
     console.log(usContacts);
@@ -65,11 +78,57 @@ const Problem2 = () => {
                                                 <tbody>
                                                     {
                                                         allContacts?.map((item, index) => {
-                                                           
-                                                            return <tr key={index}>
+
+                                                            return <tr className='cursor-pointer' key={index} data-bs-toggle="modal" data-bs-target={`#staticBackdropX${index}`} >
                                                                 <td>{item.id}</td>
                                                                 <td>{item.phone}</td>
                                                                 <td>{item.country.name}</td>
+                                                                <span>
+                                                                    <div className="modal "
+                                                                        id={`staticBackdropX${index}`} data-bs-backdrop="static"
+                                                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                                        <div className="modal-dialog ">
+                                                                            <div className="modal-content border border-danger">
+                                                                                <div className="modal-header">
+                                                                                    <h5 className="modal-title" id="staticBackdropLabel">Modal C</h5>
+                                                                                    <button type="button"
+                                                                                        className="btn-close" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></button>
+                                                                                </div>
+                                                                                <div className="modal-body">
+                                                                                    <table className="table table-striped ">
+                                                                                        <thead>
+                                                                                            <tr>
+                                                                                                <th scope="col">Id</th>
+                                                                                                <th scope="col">Phone</th>
+                                                                                                <th scope="col">Country Id</th>
+                                                                                                <th scope="col">Country</th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody>
+
+
+                                                                                            <tr>
+                                                                                                <td>{item.id}</td>
+                                                                                                <td>{item.phone}</td>
+                                                                                                <td>{item.country.id}</td>
+                                                                                                <td>{item.country.name}</td>
+                                                                                            </tr>
+
+                                                                                        </tbody>
+
+                                                                                    </table>
+                                                                                </div>
+                                                                                <div className="modal-footer">
+                                                                                    <button type="button"
+                                                                                        className="btn btn-secondary" data-bs-dismiss="modal"
+                                                                                        data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                                                                    >Close</button>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </span>
                                                             </tr>
                                                         })
                                                     }
@@ -77,8 +136,10 @@ const Problem2 = () => {
                                             </table>
                                         </div>
                                     </div>
-                                    <div className="modal-footer">
-                                        
+                                    <div className="modal-footer justify-content-start">
+                                        <span className=' '>
+                                            <input onChange={()=>handleEven(!evenContacts)} type='checkbox' /><label className='ps-2'>Even Only</label>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -114,11 +175,57 @@ const Problem2 = () => {
                                                 <tbody>
                                                     {
                                                         usContacts?.map((item, index) => {
-                                                            
-                                                            return <tr key={index}>
+
+                                                            return <tr className='cursor-pointer' key={index} data-bs-toggle="modal" data-bs-target={`#staticBackdropY${index}`}>
                                                                 <td>{item.id}</td>
                                                                 <td>{item.phone}</td>
                                                                 <td>{item.country.name}</td>
+                                                                <span>
+                                                                    <div className="modal fade"
+                                                                        id={`staticBackdropY${index}`} data-bs-backdrop="static"
+                                                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                                        <div className="modal-dialog">
+                                                                            <div className="modal-content">
+                                                                                <div className="modal-header">
+                                                                                    <h5 className="modal-title" id="staticBackdropLabel">Modal C</h5>
+                                                                                    <button type="button"
+                                                                                        className="btn-close" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"></button>
+                                                                                </div>
+                                                                                <div className="modal-body">
+                                                                                    <table className="table table-striped ">
+                                                                                        <thead>
+                                                                                            <tr>
+                                                                                                <th scope="col">Id</th>
+                                                                                                <th scope="col">Phone</th>
+                                                                                                <th scope="col">Country Id</th>
+                                                                                                <th scope="col">Country</th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody>
+
+
+                                                                                            <tr>
+                                                                                                <td>{item.id}</td>
+                                                                                                <td>{item.phone}</td>
+                                                                                                <td>{item.country.id}</td>
+                                                                                                <td>{item.country.name}</td>
+                                                                                            </tr>
+
+                                                                                        </tbody>
+
+                                                                                    </table>
+                                                                                </div>
+                                                                                <div className="modal-footer">
+                                                                                    <button type="button"
+                                                                                        className="btn btn-secondary" data-bs-dismiss="modal"
+                                                                                        data-bs-toggle="modal" data-bs-target="#staticBackdrop2"
+                                                                                    >Close</button>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </span>
                                                             </tr>
                                                         })
                                                     }
