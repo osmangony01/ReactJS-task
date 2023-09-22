@@ -2,24 +2,47 @@ import React, {useState} from 'react';
 
 const Problem1 = () => {
 
-    const [show, setShow] = useState('all');
+    const [all, setAll] = useState([])
+    const [show, setShow] = useState([]);
+    
 
-    const handleClick = (val) =>{
-        setShow(val);
+    const [name, setName] = useState('');
+    const [status, setStatus] = useState('');
+
+
+    const handleClick = (val) => {
+        if (val === 'all') {
+            setShow([...all])
+        }
+        else {
+            const filter = all.filter(item => item.status === val)
+            setShow([...filter]);
+        }
     }
 
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        const data = { name: name, status: status.toLowerCase() }
+        setShow([...show, data]);
+        setAll([...show, data]);
+        //console.log(data)
+        e.target.reset();
+    }
+
+    //console.log(show)
+    
     return (
 
         <div className="container">
             <div className="row justify-content-center mt-5">
                 <h4 className='text-center text-uppercase mb-5'>Problem-1</h4>
                 <div className="col-6 ">
-                    <form className="row gy-2 gx-3 align-items-center mb-4">
+                    <form className="row gy-2 gx-3 align-items-center mb-4" onSubmit={handleSubmit}>
                         <div className="col-auto">
-                            <input type="text" className="form-control" placeholder="Name"/>
+                            <input onChange={(e)=>setName(e.target.value)} type="text" className="form-control" placeholder="Name"/>
                         </div>
                         <div className="col-auto">
-                            <input type="text" className="form-control" placeholder="Status"/>
+                            <input onChange={(e)=>setStatus(e.target.value)} type="text" className="form-control" placeholder="Status"/>
                         </div>
                         <div className="col-auto">
                             <button type="submit" className="btn btn-primary">Submit</button>
@@ -47,7 +70,14 @@ const Problem1 = () => {
                         </tr>
                         </thead>
                         <tbody>
-                        
+                            {
+                                show?.map((item, index) => {
+                                    return <tr key={index}>
+                                        <td>{ item.name}</td>
+                                        <td>{ item.status}</td>
+                                    </tr>
+                                })
+                        }
                         </tbody>
                     </table>
                 </div>
