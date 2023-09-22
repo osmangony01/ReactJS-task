@@ -5,6 +5,7 @@ const Problem1 = () => {
     const [all, setAll] = useState([])
     const [show, setShow] = useState([]);
     
+    
 
     const [name, setName] = useState('');
     const [status, setStatus] = useState('');
@@ -23,14 +24,25 @@ const Problem1 = () => {
     const handleSubmit = (e) =>{
         e.preventDefault();
         const data = { name: name, status: status.toLowerCase() }
-        setShow([...show, data]);
-        setAll([...show, data]);
+        
+        const sortData = [...all, data];
+        const allActive = sortData.filter(item => item.status == "active");
+        const allCom = sortData.filter(item => item.status == "completed");
+        const allOthers = sortData.filter(item => item.status !== "active" && item.status !== "completed");
+        
+        const sortData2 = [...show, data];
+        const showActive = sortData2.filter(item => item.status == "active");
+        const showCom = sortData2.filter(item => item.status == "completed");
+        const showOthers = sortData2.filter(item => item.status !== "active" && item.status !== "completed");
+
+        setShow([...showActive, ...showCom, ...showOthers]);
+        setAll([...allActive, ...allCom, ...allOthers]);
         //console.log(data)
         e.target.reset();
     }
 
     //console.log(show)
-    
+
     return (
 
         <div className="container">
